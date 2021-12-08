@@ -9,6 +9,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
+
+import com.testcode.ComputerWindow;
+import com.testcode.MainWindow;
+
 import javax.swing.border.Border;
 import javax.swing.*;
 import java.util.EventObject;
@@ -20,7 +24,10 @@ public class Bordcomputer extends SwingWindow{
 	public static void main(String[] args) {
 		avgSpeed avgspeed = new avgSpeed();
 		Temperature temp = new Temperature();
-		SystemClock clock = new SystemClock();
+		Systemuhr clock = new Systemuhr();
+		MainWindow main = new MainWindow();
+		ComputerWindow computerWindow = new ComputerWindow();
+		
 		
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -58,20 +65,28 @@ public class Bordcomputer extends SwingWindow{
 		
 		//Toggle-Buttons
 		JToggleButton toggleButton_1 = new JToggleButton();
-		toggleButton_1.setIcon(new ImageIcon("C:\\Users\\kolle\\OneDrive\\Desktop\\Icons\\Computer.png"));
+		toggleButton_1.setIcon(new ImageIcon("C:\\Users\\Captiva\\Documents\\THD\\5. Semester\\Software\\Computer.png"));
 		toggleButton_1.setBounds(70, 80, 100, 30);
 		compPanel.add(toggleButton_1);
 		
+		toggleButton_1.addActionListener(new ActionListener() { 
+			  public void actionPerformed(ActionEvent e) { 
+				  computerWindow.InitGui();
+				  computerWindow.InitComptuerChoices();
+				  computerWindow.Show();
+			  }
+		});
+		
 		JToggleButton toggleButton_2 = new JToggleButton();
-		toggleButton_2.setIcon(new ImageIcon("C:\\Users\\kolle\\OneDrive\\Desktop\\Icons\\Sprachen.png"));
+		toggleButton_2.setIcon(new ImageIcon("C:\\Users\\Captiva\\Documents\\THD\\5. Semester\\Software\\Languages.png"));
 		compPanel.add(toggleButton_2);
 		
 		JToggleButton toggleButton_3 = new JToggleButton();
-		toggleButton_3.setIcon(new ImageIcon("C:\\Users\\kolle\\OneDrive\\Desktop\\Icons\\Bluetooth.png"));
+		toggleButton_3.setIcon(new ImageIcon("C:\\Users\\Captiva\\Documents\\THD\\5. Semester\\Software\\Bluetooth.png"));
 		compPanel.add(toggleButton_3);
 		
 		JToggleButton toggleButton_4 = new JToggleButton();
-		toggleButton_4.setIcon(new ImageIcon("C:\\Users\\kolle\\OneDrive\\Desktop\\Icons\\Phone.png"));
+		toggleButton_4.setIcon(new ImageIcon("C:\\Users\\Captiva\\Documents\\THD\\5. Semester\\Software\\Phone.png"));
 		compPanel.add(toggleButton_4);
 				
 		//Menu-Separation
@@ -82,39 +97,6 @@ public class Bordcomputer extends SwingWindow{
 		compFrame.setJMenuBar(compBar);
 		compFrame.setVisible(true);
 		
-		
-		System.out.println("Press 0 and hit enter to get to the driving data:");
-	
-		//Menu-Switch
-	while (scan.nextInt() < 9 || scan.nextInt() >= 0) {
-		System.out.println("Press following Buttons: \n1: Average speed reached since the start of the journey \n2: Motor oil temperature \n3: Cooling water temperature \n4: Outside temperature \n5: Fuel consumption in l / 100km at the moment \n6: Fuel consumption in l / 100km since starting the journey \n7: Distance covered since the start of the journey in km \n8: Time passed is");
-		
-		int mode = scan.nextInt();
-		
-		switch (mode) {
-		case 1:
-			avgspeed.setavgSpeed();
-			break;
-		case 2: 
-			temp.getOilTemp();
-			break;
-		case 3: 
-			temp.getWaterTemp();
-			break;
-		case 4:
-			temp.getTempOut();
-			break;
-		case 5:
-			clock.getClock(args);
-			break;
-		case 7: 
-			System.out.println(avgspeed.distance);
-			break;
-		default:
-			System.out.println("Invalid Input");
-		}
-	}	
-		
-	System.out.println("next method here");
-   }
+	}		
 }
+	
